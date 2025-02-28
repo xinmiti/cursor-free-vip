@@ -28,7 +28,8 @@ EMOJI = {
     "MENU": "📋",
     "ARROW": "➜",
     "LANG": "🌐",
-    "UPDATE": "🔄"
+    "UPDATE": "🔄",
+    "ACCOUNTS": "👤"  # 添加账号图标
 }
 
 class Translator:
@@ -179,6 +180,7 @@ def print_menu():
     print(f"{Fore.GREEN}4{Style.RESET_ALL}. {EMOJI['ERROR']} {translator.get('menu.quit')}")
     print(f"{Fore.GREEN}5{Style.RESET_ALL}. {EMOJI['LANG']} {translator.get('menu.select_language')}")
     print(f"{Fore.GREEN}6{Style.RESET_ALL}. {EMOJI['UPDATE']} {translator.get('menu.disable_auto_update')}")
+    print(f"{Fore.GREEN}7{Style.RESET_ALL}. {EMOJI['ACCOUNTS']} {translator.get('menu.view_accounts')}")  # 添加新选项
     print(f"{Fore.YELLOW}{'─' * 40}{Style.RESET_ALL}")
 
 def select_language():
@@ -238,6 +240,10 @@ def main():
             elif choice == "6":
                 import disable_auto_update
                 disable_auto_update.run(translator)
+                print_menu()
+            elif choice == "7":  # 添加新选项处理
+                import view_accounts
+                view_accounts.main(translator)
                 print_menu()
             else:
                 print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('menu.invalid_choice')}{Style.RESET_ALL}")
